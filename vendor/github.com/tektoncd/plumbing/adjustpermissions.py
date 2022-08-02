@@ -55,9 +55,10 @@ def update_all_projects(users: List[str], projects: List[str], remove: bool) -> 
   for user in users:
     for project in projects:
       for role in ROLES:
-        subprocess.check_call(shlex.split(
-            "gcloud projects {} {} --member user:{} --role {}".format(command, project, user, role)
-        ))
+        subprocess.check_call(
+            shlex.split(
+                f"gcloud projects {command} {project} --member user:{user} --role {role}"
+            ))
 
 
 def parse_boskos_projects() -> List[str]:
